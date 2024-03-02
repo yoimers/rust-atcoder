@@ -1,7 +1,10 @@
 pub mod combination;
 pub mod crt;
 pub mod gcd;
+pub mod hilbert;
 pub mod matrix;
+pub mod modint;
 pub mod modulo;
 pub mod prime;
+pub mod rational;
 pub mod symmetric_group;

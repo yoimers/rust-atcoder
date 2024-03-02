@@ -16,7 +16,7 @@ impl Xorshift {
 
   #[allow(dead_code)]
   pub fn with_seed(seed: u64) -> Xorshift {
-    Xorshift { seed: seed }
+    Xorshift { seed }
   }
 
   #[inline(always)]

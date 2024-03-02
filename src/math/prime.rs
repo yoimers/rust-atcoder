@@ -58,6 +58,7 @@ fn divisor(n: usize) -> Vec<usize> {
     }
     i += 1;
   }
+  res.sort();
   res
 }
 

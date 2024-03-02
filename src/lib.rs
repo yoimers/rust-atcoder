@@ -9,6 +9,8 @@ pub mod graph;
 pub mod lexical_permutation;
 pub mod math;
 pub mod multi_set;
+pub mod range_set;
+pub mod range_tree;
 pub mod sparse_table;
 pub mod string;
 pub mod ternary_search;

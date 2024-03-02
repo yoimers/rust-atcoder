@@ -7,6 +7,7 @@ pub struct CoordCompression {
   comp: std::collections::HashMap<i64, usize>,
   dcmp: std::collections::HashMap<usize, i64>,
 }
+
 #[snippet("CoordCompression")]
 impl CoordCompression {
   pub fn new(xs: &[i64], start: usize, step: usize) -> CoordCompression {
@@ -35,6 +36,7 @@ impl CoordCompression {
     self.comp.len()
   }
 }
+
 #[test]
 fn test_coord_compression() {
   let v = vec![-2, 3, 99999, 1000];
@@ -43,4 +45,22 @@ fn test_coord_compression() {
   assert_eq!(cc.compress(1000), 2);
   assert_eq!(cc.decompress(1), 3);
   assert_eq!(cc.decompress(3), 99999);
+}
+
+fn compress_vec<T: PartialEq + Copy>(input_vec: Vec<T>) -> Vec<(T, usize)> {
+  let mut retv = Vec::new();
+  let mut iter = input_vec.iter().peekable();
+  while let Some(&element) = iter.next() {
+    let mut count = 1;
+    while let Some(&next_element) = iter.peek() {
+      if element == *next_element {
+        count += 1;
+        iter.next();
+      } else {
+        break;
+      }
+    }
+    retv.push((element, count));
+  }
+  retv
 }

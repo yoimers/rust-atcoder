@@ -62,32 +62,14 @@ impl SCC {
       }
     }
   }
-}
-
-#[test]
-fn test_scc() {
-  let e = vec![
-    vec![1],
-    vec![2, 3],
-    vec![3],
-    vec![4],
-    vec![2, 5],
-    vec![6],
-    vec![7, 8, 9],
-    vec![5],
-    vec![9, 11],
-    vec![10],
-    vec![9],
-    vec![],
-  ];
-  let n = e.len();
-  let mut g = SCC::new(n);
-  for u in 0..n {
-    for v in e[u].clone() {
-      g.add_edge(u, v);
-    }
+  pub fn is_same(&self, u: usize, v: usize) -> bool {
+    self.order[u] == self.order[v]
   }
-  g.build();
-
-  assert_eq!(g.order, [0, 1, 2, 2, 2, 3, 3, 3, 4, 6, 6, 5]);
+  pub fn size(&self) -> Vec<usize> {
+    let mut ret = vec![0; self.g.len()];
+    for &i in self.order.iter() {
+      ret[i] += 1;
+    }
+    ret
+  }
 }

@@ -16,3 +16,13 @@
 //       a: i32
 //   }
 // }
+fn read<T: std::str::FromStr>() -> T {
+  let s = std::io::stdin();
+  let s = s.lock();
+  let s: String = std::io::Read::bytes(s)
+    .map(|c| c.expect("failed reading char") as char)
+    .skip_while(|c| c.is_whitespace())
+    .take_while(|c| !c.is_whitespace())
+    .collect();
+  s.parse().ok().expect("failed parsing")
+}
